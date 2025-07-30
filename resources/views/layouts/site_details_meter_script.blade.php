@@ -64,7 +64,6 @@
 	$(document).ready(function() {
 			var LoadMeterPerBuildingList = $('#meterlist').DataTable( {
 				
-				
 				processing: true,
 				stateSave: true,/*Remember Searches*/
 				scrollCollapse: true,
@@ -83,8 +82,7 @@
 					},
 					},
 				"columns": [
-					{data: 'DT_RowIndex', name: 'DT_RowIndex' , searchable: false, className: "text-right"},
-					/*{data: 'measuring_point'},*/           
+					{data: 'DT_RowIndex', name: 'DT_RowIndex' , searchable: false, className: "text-right"},        
 					{data: 'meter_name', className: "text-center"},
 					{data: 'customer_name', className: "text-left"},
 					{data: 'last_log_update', className: "text-center"},
@@ -229,6 +227,8 @@
 			let meter_status 			= $("#meter_status").val();
 			let meter_remarks 			= $("input[name=meter_remarks]").val();
 			
+			let usage_type 			= $("#usage_type").val();
+			
 			$.ajax({
 				url: "{{ route('CREATE_METER_INFO') }}",
 				type:"POST",
@@ -248,6 +248,7 @@
 				  location_id:location_id,
 				  meter_status:meter_status,
 				  meter_remarks:meter_remarks,
+				  usage_type:usage_type,
 				  _token: "{{ csrf_token() }}"
 				},
 				success:function(response){
@@ -395,6 +396,9 @@
 					document.getElementById("update_meter_status").value = response[0].meter_status.toUpperCase();
 					document.getElementById("update_meter_remarks").value = response[0].meter_remarks;
 					
+					usage_type
+					document.getElementById("update_usage_type").value = response[0].usage_type;
+					
 					document.getElementById("update-meter").value = meterID;
 					document.getElementById("update-meter").disabled = true;
 					
@@ -424,6 +428,8 @@
 	document.getElementById("update_location_id").addEventListener('change', doThing_meter_management);
 	document.getElementById("update_meter_status").addEventListener('change', doThing_meter_management);
 	document.getElementById("update_meter_remarks").addEventListener('change', doThing_meter_management);
+	
+	document.getElementById("update_usage_type").addEventListener('change', doThing_meter_management);
 	
 	function doThing_meter_management(){
 			
@@ -469,6 +475,7 @@
 			let location_id 			= $("#update_location option[value='" + $('#update_location_id').val() + "']").attr('data-id');
 			
 			let meter_status 			= $("#update_meter_status").val();
+			let usage_type 		= $("#update_usage_type").val();
 			let meter_remarks 			= $("input[name=update_meter_remarks]").val();
 	
 				$.ajax({
@@ -501,7 +508,8 @@
 						  meter_type_value===meter_type &&
 						  response[0].location_idx==location_id &&
 						  response[0].meter_status==meter_status &&
-						  meter_remarks_value==meter_remarks  
+						  meter_remarks_value==meter_remarks &&
+						  response[0].usage_type==usage_type  
 					  ){
 							document.getElementById("update-meter").disabled = true;
 							$('#loading_data_updatemeter').hide();
@@ -571,6 +579,8 @@
 			let meter_status 			= $("#update_meter_status").val();
 			let meter_remarks 			= $("input[name=update_meter_remarks]").val();
 			
+			let usage_type 				= $("#update_usage_type").val();
+						
 			$.ajax({
 				url: "{{ route('UPDATE_METER_INFO') }}",
 				type:"POST",
@@ -591,6 +601,7 @@
 				  location_id:location_id,
 				  meter_status:meter_status,
 				  meter_remarks:meter_remarks,
+				  usage_type:usage_type,
 				  _token: "{{ csrf_token() }}"
 				},
 				success:function(response){

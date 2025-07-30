@@ -67,14 +67,6 @@ elseif (Request::is('sap_report')){
 }
 elseif (Request::is('consumption_report')){
 ?>
-  <!-- <style>
-   .dt-scroll-headInner{
-    width: 100% !important;
-	}
-   .table.dataTable{
-	width: 100% !important;
-	} 
-   </style>-->
 @include('layouts.generate_meter_consumption_report_script')
 <?php
 }

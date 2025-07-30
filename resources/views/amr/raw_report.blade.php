@@ -35,7 +35,7 @@
 									<div class="row mb-2">
 									  <label for="meter_id" class="col-sm-3 col-form-label">Meter</label>
 									  <div class="col-sm-9">
-									  <input class="form-control" list="meter_list" name="meter_list" id="meter_id" required autocomplete="off">
+									  <input class="form-control" list="meter_list" name="meter_list" id="meter_id" required autocomplete="off" onchange="MeterColumn()">
 											<datalist id="meter_list">
 												<option label>
 											</datalist>
@@ -66,6 +66,7 @@
 									</div>
 									
 									<div class="row mb-2">
+									<div id="column_selection">
 									  <label for="end_date" class="col-sm-3 col-form-label">Column</label>
 									  <div class="col-sm-9">
 										<div class="form-check">
@@ -118,6 +119,7 @@
 										</div>
 									</div>
 									</div>
+							</div>
 							</div>
 							
 						</div>
@@ -204,7 +206,7 @@
 												<th class="" >kwh_del</th>
 												<th class="" >kwh_rec</th>
 												<th class="" >kwh_net</th>
-												<th style="" class="all" >kwh_total</th>
+												<th style="" class="all" ><div id='reading_title'>kwh_total</div></th>
 												
 												<th class="" >vrms_a</th>
 												<th class="" >vrms_b</th>

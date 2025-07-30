@@ -226,13 +226,13 @@
             </a>
           </li>
 		  <li>
-            <a href="{{ route('DemandReport') }}" class="sidebar_li_a" title="Generate KWh Consumption for Each Meter">
-              <i class="bi bi-circle"></i><span>KW Demand</span>
+            <a href="{{ route('DemandReport') }}" class="sidebar_li_a" title="Generate Demand for Each Meter">
+              <i class="bi bi-circle"></i><span>Demand</span>
             </a>
           </li>
 		  <li>
-            <a href="{{ route('ConsumptionReport') }}" class="sidebar_li_a" title="Generate KWh Consumption for Each Meter">
-              <i class="bi bi-circle"></i><span>KWh Consumption</span>
+            <a href="{{ route('ConsumptionReport') }}" class="sidebar_li_a" title="Generate Consumption for Each Meter">
+              <i class="bi bi-circle"></i><span>Consumption</span>
             </a>
           </li>
           <li>
@@ -241,7 +241,7 @@
             </a>
           </li>
 		   <li>
-            <a href="{{ route('SiteReport') }}" class="sidebar_li_a" title="Generate KWh Consumption for All Meters per Building">
+            <a href="{{ route('SiteReport') }}" class="sidebar_li_a" title="Generate Consumption for All Meters per Building">
               <i class="bi bi-circle"></i><span>Building</span>
             </a>
           </li>

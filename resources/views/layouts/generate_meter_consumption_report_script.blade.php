@@ -431,10 +431,11 @@
 							var meter_name 		= response[i].meter_name;
 							var customer_name 	= response[i].customer_name;
 							var gateway_sn	 	= response[i].gateway_sn;
+							var usage_type 		= response[i].usage_type;
 							
 							meter_label =  (meter_name + ' | ' + customer_name);
 							
-							$('#meter_list option:last').after("<option label='"+meter_label+"' data-id="+id+" data-description='"+customer_name+"' data-gateway='"+gateway_sn+"' value="+meter_name+">");
+							$('#meter_list option:last').after("<option label='"+meter_label+"' data-id="+id+" data-usage-type='"+usage_type+"' data-description='"+customer_name+"' data-gateway='"+gateway_sn+"' value="+meter_name+">");
 
 						}			
 				  }else{
@@ -447,4 +448,19 @@
 			   });
 	  }  	
 	  
+	/*Hide Selection of Meter Column if the selected meter is Water Meter usage type*/
+	function MeterColumn() {
+			let usage_type 	= $("#meter_list option[value='" + $('#meter_id').val() + "']").attr('data-usage-type');
+			if(usage_type=='Water Meter'){
+				//document.getElementById("column_selection").style.display = "none";
+				$("#reading_title").html('cum');
+				$("#reading_title_total").html('Total cum:');
+			}
+			else{
+				//document.getElementById("column_selection").style.display = "inline-flex";
+				$("#reading_title").html('KWh');
+				$("#reading_title_total").html('Total KWh:');
+			}
+	}  	
+	
 </script>

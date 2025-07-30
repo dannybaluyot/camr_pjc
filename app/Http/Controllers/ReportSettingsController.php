@@ -55,6 +55,7 @@ class ReportSettingsController extends Controller
 						`meter_details`.`meter_name`,
 						`meter_details`.`customer_name`,
 						`meter_details`.`meter_multiplier`,
+						`meter_details`.`usage_type`,
 						`meter_rtu`.`gateway_sn`
 					from meter_details
 						left join `meter_rtu` on `meter_rtu`.`rtu_id` = `meter_details`.`rtu_idx`

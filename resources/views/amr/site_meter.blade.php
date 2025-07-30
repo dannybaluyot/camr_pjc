@@ -67,7 +67,7 @@
 						<div class="col-sm-8">
 						
 							<div class="form-floating mb-1">
-							  <input type="text" class="form-control" name="meter_name" id="meter_name" value="" required placeholder="Meter Description">
+							  <input type="number" class="form-control" name="meter_name" id="meter_name" value="" required placeholder="Meter Description">
 							  <label for="meter_name"title="Meter Serial Number/Meter Description on SAP">Meter Description</label>
 							  <span class="valid-feedback" id="meter_descriptionError"></span>	
 							 </div>
@@ -189,7 +189,7 @@
 						
 						<div class="col-sm-6">
 							<div class="form-floating mb-1">
-							 <select class="form-control form-select " name="meter_status" id="meter_status">
+									<select class="form-control form-select " name="meter_status" id="meter_status">
 										<option value="ACTIVE">Active</option>
 										<option value="INACTIVE">Inactive</option>
 									</select>
@@ -199,14 +199,26 @@
 						
 						<div class="col-sm-6">
 							<div class="form-floating mb-1">
-							  <input type="text" class="form-control " name="meter_remarks" id="meter_remarks" value="" placeholder="Remarks">
-							  <label for="meter_remarks" class="col-sm-3 col-form-label">Remarks</label>
+									<select class="form-control form-select " name="usage_type" id="usage_type">
+										<option value="Electric Meter">Electric Meter</option>
+										<option value="Water Meter">Water Meter</option>
+									</select>
+							  <label for="usage_type" class="col-sm-3 col-form-label">Usage Type</label>
 							 </div>
 						</div>
 						
 					</div>									
 					
-					
+					<div class="row mb-1">
+	
+						<div class="col-sm-12">
+							<div class="form-floating mb-1">
+							  <input type="text" class="form-control " name="meter_remarks" id="meter_remarks" value="" placeholder="Remarks">
+							  <label for="meter_remarks" class="col-sm-3 col-form-label">Remarks</label>
+							 </div>
+						</div>
+						
+					</div>					
 					
 					</div>
 					
@@ -241,10 +253,10 @@
 						<div class="col-sm-8">
 						
 							<div class="form-floating mb-1">
-							  <input type="text" class="form-control" name="update_meter_name" id="update_meter_name" value="" required placeholder="Meter Description">
+							  <input type="number" class="form-control" name="update_meter_name" id="update_meter_name" value="" required placeholder="Meter Description">
 							  <label for="meter_name"title="Meter Serial Number/Meter Description on SAP">Meter Description</label>
 							  <span class="valid-feedback" id="update_meter_descriptionError"></span>	
-							 </div>
+							</div>
 								
 						</div>
 						
@@ -374,13 +386,26 @@
 						
 						<div class="col-sm-6">
 							<div class="form-floating mb-1">
-							  <input type="text" class="form-control " name="update_meter_remarks" id="update_meter_remarks" value="" placeholder="Remarks">
-							  <label for="update_meter_remarks" class="col-sm-3 col-form-label">Remarks</label>
+							 <select class="form-control form-select " name="update_usage_type" id="update_usage_type">
+										<option value="Electric Meter">Electric Meter</option>
+										<option value="Water Meter">Water Meter</option>
+									</select>
+							  <label for="update_usage_type" class="col-sm-3 col-form-label">Usage Type</label>
 							 </div>
 						</div>
 						
 					</div>
 					
+					<div class="row mb-1">
+	
+						<div class="col-sm-12">
+							<div class="form-floating mb-1">
+							  <input type="text" class="form-control " name="update_meter_remarks" id="update_meter_remarks" value="" placeholder="Remarks">
+							  <label for="update_meter_remarks" class="col-sm-3 col-form-label">Remarks</label>
+							 </div>
+						</div>
+						
+					</div>			
 					
 					</form>
 					

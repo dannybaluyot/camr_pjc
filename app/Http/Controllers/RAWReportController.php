@@ -129,7 +129,7 @@ class RAWReportController extends Controller
 	}
 	
 	
-		public function generate_raw_report(Request $request){
+	public function generate_raw_report(Request $request){
 
 		$request->validate([
           'site_id'      			=> 'required',
@@ -316,15 +316,7 @@ class RAWReportController extends Controller
 			$column_set7_excel = ""; 
 			
 		}
-		
-		$_custom_column = "`datetime`,$column_set1$column_set2$column_set3`wh_del`,`wh_rec`,`wh_net`,`wh_total`,$column_set5$column_set6$column_set7";
-		$custom_column = rtrim($_custom_column, ',');
-
-		/*Column for Excel*/
-		$custom_column_header_excel = "#,Datetime,$column_set1_excel$column_set2_excel$column_set3_excel"."kwh_del,kwh_rec,kwh_net,kwh_total,$column_set5_excel$column_set6_excel$column_set7_excel";
-		$_custom_column_data_excel = str_replace('`', '', $custom_column);
-		$custom_column_data_excel = explode(",", $_custom_column_data_excel);
-		
+				
 		/*Query Site Code needed for Meter Data*/
 		//$site_data = SiteModel::find($request->site_id, ['site_code']);		
 		//$site_code = $site_data->site_code;
@@ -345,6 +337,7 @@ class RAWReportController extends Controller
 						`meter_details`.`meter_name`,
 						`meter_details`.`customer_name`,
 						`meter_details`.`meter_multiplier`,
+						`meter_details`.`usage_type`,
 						`meter_location_table`.`location_code`,
 						`meter_location_table`.`location_description`,
 						`meter_rtu`.`gateway_sn`
@@ -355,7 +348,30 @@ class RAWReportController extends Controller
 							   
 		$meter_info_data = DB::select("$raw_meter_info", [$meter_id,$site_id]);
 		
-		$meter_multiplier = $meter_info_data[0]->meter_multiplier;
+		$meter_multiplier 	= $meter_info_data[0]->meter_multiplier;
+		$usage_type 		= $meter_info_data[0]->usage_type;
+
+		if($usage_type=='Electric Meter'){
+		
+			$_custom_column = "`datetime`,$column_set1$column_set2$column_set3`wh_del`,`wh_rec`,`wh_net`,`wh_total`,$column_set5$column_set6$column_set7";
+			$custom_column = rtrim($_custom_column, ',');
+
+			/*Column for Excel*/
+			$custom_column_header_excel = "#,Datetime,$column_set1_excel$column_set2_excel$column_set3_excel"."kwh_del,kwh_rec,kwh_net,kwh_total,$column_set5_excel$column_set6_excel$column_set7_excel";
+			$_custom_column_data_excel = str_replace('`', '', $custom_column);
+			$custom_column_data_excel = explode(",", $_custom_column_data_excel);
+		}
+		else{
+			
+			$_custom_column = "`datetime`,`wh_total`";
+			$custom_column = rtrim($_custom_column, ',');
+
+			/*Column for Excel*/
+			$custom_column_header_excel = "#,Datetime,cum";
+			$_custom_column_data_excel = str_replace('`', '', $custom_column);
+			$custom_column_data_excel = explode(",", $_custom_column_data_excel);
+			
+		}
 		
 	   ini_set('max_execution_time', 0);
        // ini_set('memory_limit', '500M');
@@ -395,8 +411,8 @@ class RAWReportController extends Controller
 					->setCellValue('B5', $building_description)
 					->setCellValue('B6', $beginning_date)
 					->setCellValue('B7', $ending_date)
-					->setCellValue('B8', $meter_info_data[0]->gateway_sn);			
-		
+					->setCellValue('B8', $meter_info_data[0]->gateway_sn)
+					->setCellValue('B9', $meter_info_data[0]->usage_type);			
 		
 			$no_excl = 12;
 			$n = 1;

@@ -114,86 +114,111 @@
 					LoadRawData.clear().draw();
 					LoadRawData.rows.add(response.data).draw();	
 
-						/*Default Visible*/
-						LoadRawData.column(0).visible(true);
-						LoadRawData.column(1).visible(true);
-						LoadRawData.column(2).visible(true);
-						LoadRawData.column(3).visible(true);
-						LoadRawData.column(4).visible(true);
-						LoadRawData.column(5).visible(true);
+						
 						
 						 var total_result = response.data.length; 
 						 
 						 if(total_result!=0){
 						 
-							 if(cols_set1_chk==true){ 
-									LoadRawData.column(6).visible(true);
-									LoadRawData.column(7).visible(true);
-									LoadRawData.column(8).visible(true);
-							 } else{ 
-									LoadRawData.column(6).visible(false);
-									LoadRawData.column(7).visible(false);
-									LoadRawData.column(8).visible(false);
-							 }
-						
-							if(cols_set2_chk==true){ 
-									 LoadRawData.column(9).visible(true);
-									 LoadRawData.column(10).visible(true);
-									 LoadRawData.column(11).visible(true);
-							} else{ 
-									 LoadRawData.column(9).visible(false);
-									 LoadRawData.column(10).visible(false);
-									 LoadRawData.column(11).visible(false);
-							}
-										
-							
-							if(cols_set3_chk==true){ 
-									LoadRawData.column(12).visible(true);
-									LoadRawData.column(13).visible(true);
-									LoadRawData.column(14).visible(true);
-									LoadRawData.column(15).visible(true);
-									LoadRawData.column(16).visible(true);
-							} else{ 
-									LoadRawData.column(12).visible(false);
-									LoadRawData.column(13).visible(false);
-									LoadRawData.column(14).visible(false);
-									LoadRawData.column(15).visible(false);
-									LoadRawData.column(16).visible(false);
-							}
-							
-							if(cols_set5_chk==true){ 
-									LoadRawData.column(17).visible(true);
-									LoadRawData.column(18).visible(true);
-									LoadRawData.column(19).visible(true);
-									LoadRawData.column(20).visible(true);
-									LoadRawData.column(21).visible(true);
-							} else{ 
-									LoadRawData.column(17).visible(false);
-									LoadRawData.column(18).visible(false);
-									LoadRawData.column(19).visible(false);
-									LoadRawData.column(20).visible(false);	
-									LoadRawData.column(21).visible(false);							
-							}
-							
-											  
-							if(cols_set6_chk==true){ 
-									LoadRawData.column(22).visible(true);
-									LoadRawData.column(23).visible(true);
-							} else{ 
-									LoadRawData.column(22).visible(false);
-									LoadRawData.column(23).visible(false);
-							}
-							
+						 /*if Water Meter*/
+						 let usage_type 	= $("#meter_list option[value='" + $('#meter_id').val() + "']").attr('data-usage-type');
+						 
+							if(usage_type=='Water Meter'){
 								
-							if(cols_set7_chk==true){ 
-									LoadRawData.column(24).visible(true);
-									LoadRawData.column(25).visible(true);
-							} else{ 
+									/*Default Visible*/
+									LoadRawData.column(0).visible(true);
+									LoadRawData.column(1).visible(true);
+									LoadRawData.column(2).visible(false);
+									LoadRawData.column(3).visible(false);
+									LoadRawData.column(4).visible(false);
+									LoadRawData.column(5).visible(true);
 									LoadRawData.column(24).visible(false);
 									LoadRawData.column(25).visible(false);
-							}		
-						
-						 }
+									
+									$("#reading_title").html('cum');
+									//reading_title
+							}
+							else{
+								
+									/*Default Visible*/
+									
+									LoadRawData.column(0).visible(true);
+									LoadRawData.column(1).visible(true);
+									LoadRawData.column(2).visible(true);
+									LoadRawData.column(3).visible(true);
+									LoadRawData.column(4).visible(true);
+									LoadRawData.column(5).visible(true);
+									
+									$("#reading_title").html('kwh_total');
+									
+									 if(cols_set1_chk==true){ 
+											LoadRawData.column(6).visible(true);
+											LoadRawData.column(7).visible(true);
+											LoadRawData.column(8).visible(true);
+									 } else{ 
+											LoadRawData.column(6).visible(false);
+											LoadRawData.column(7).visible(false);
+											LoadRawData.column(8).visible(false);
+									 }
+								
+									if(cols_set2_chk==true){ 
+											 LoadRawData.column(9).visible(true);
+											 LoadRawData.column(10).visible(true);
+											 LoadRawData.column(11).visible(true);
+									} else{ 
+											 LoadRawData.column(9).visible(false);
+											 LoadRawData.column(10).visible(false);
+											 LoadRawData.column(11).visible(false);
+									}
+												
+									
+									if(cols_set3_chk==true){ 
+											LoadRawData.column(12).visible(true);
+											LoadRawData.column(13).visible(true);
+											LoadRawData.column(14).visible(true);
+											LoadRawData.column(15).visible(true);
+											LoadRawData.column(16).visible(true);
+									} else{ 
+											LoadRawData.column(12).visible(false);
+											LoadRawData.column(13).visible(false);
+											LoadRawData.column(14).visible(false);
+											LoadRawData.column(15).visible(false);
+											LoadRawData.column(16).visible(false);
+									}
+									
+									if(cols_set5_chk==true){ 
+											LoadRawData.column(17).visible(true);
+											LoadRawData.column(18).visible(true);
+											LoadRawData.column(19).visible(true);
+											LoadRawData.column(20).visible(true);
+											LoadRawData.column(21).visible(true);
+									} else{ 
+											LoadRawData.column(17).visible(false);
+											LoadRawData.column(18).visible(false);
+											LoadRawData.column(19).visible(false);
+											LoadRawData.column(20).visible(false);	
+											LoadRawData.column(21).visible(false);							
+									}
+									
+													  
+									if(cols_set6_chk==true){ 
+											LoadRawData.column(22).visible(true);
+											LoadRawData.column(23).visible(true);
+									} else{ 
+											LoadRawData.column(22).visible(false);
+											LoadRawData.column(23).visible(false);
+									}
+									
+										
+									if(cols_set7_chk==true){ 
+											LoadRawData.column(24).visible(true);
+											LoadRawData.column(25).visible(true);
+									} else{ 
+											LoadRawData.column(24).visible(false);
+											LoadRawData.column(25).visible(false);
+									}		
+							}
+					}
 					
 							let building_code_txt 	= $("#site_name option[value='" + $('#site_id').val() + "']").attr('data-code');
 							$('#building_code').text(building_code_txt);
@@ -373,11 +398,12 @@
 							var meter_name 		= response[i].meter_name;
 							var customer_name 	= response[i].customer_name;
 							var gateway_sn 	= response[i].gateway_sn;
+							var usage_type 	= response[i].usage_type;
 							
 							meter_label =  (meter_name + ' | ' + customer_name);
 							
 							//$('#meter_list option:last').after("<option label='"+meter_label+"' data-id="+id+" data-description='"+customer_name+"' value="+meter_name+">");
-							$('#meter_list option:last').after("<option label='"+meter_label+"' data-id="+id+" data-description='"+customer_name+"' data-gateway='"+gateway_sn+"' value="+meter_name+">");
+							$('#meter_list option:last').after("<option label='"+meter_label+"' data-id="+id+" data-usage-type='"+usage_type+"' data-description='"+customer_name+"' data-gateway='"+gateway_sn+"' value="+meter_name+">");
 
 						}			
 				  }else{
@@ -389,5 +415,16 @@
 				}
 			   });
 	  }  	
-	  
+	 
+	/*Hide Selection of Meter Column if the selected meter is Water Meter usage type*/
+	function MeterColumn() {
+			let usage_type 	= $("#meter_list option[value='" + $('#meter_id').val() + "']").attr('data-usage-type');
+			if(usage_type=='Water Meter'){
+				document.getElementById("column_selection").style.display = "none";
+			}
+			else{
+				document.getElementById("column_selection").style.display = "inline-flex";
+			}
+	}  	
+		 
 </script>

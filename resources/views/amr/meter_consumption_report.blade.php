@@ -35,7 +35,7 @@
 									<div class="row mb-2">
 									  <label for="meter_id" class="col-sm-3 col-form-label">Meter</label>
 									  <div class="col-sm-9">
-									  <input class="form-control" list="meter_list" name="meter_list" id="meter_id" required autocomplete="off">
+									  <input class="form-control" list="meter_list" name="meter_list" id="meter_id" required autocomplete="off" onchange="MeterColumn()">
 											<datalist id="meter_list">
 												<option label>
 											</datalist>
@@ -173,7 +173,7 @@
 													<th>Date End</th>
 													<th>End Reading</th>
 													<th>Multiplier</th>
-													<th>KWh</th>
+													<th id="reading_title">KWh</th>
 												</tr>
 											</thead>				
 											
@@ -182,7 +182,7 @@
 											</tbody>
 											<tfoot>
 												<tr>
-													<th scope="col" colspan="7" style="text-align: right;">Total KWh:</th>
+													<th scope="col" colspan="7" style="text-align: right;" id="reading_title_total">Total KWh:</th>
 													<th scope="col" id="total_current_consumption" style="text-align: right;">0.00</th>
 												</tr>
 											</tfoot>	

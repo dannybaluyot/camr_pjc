@@ -312,6 +312,7 @@ class CAMRMeterController extends Controller
 						`meter_details`.`meter_default_name`,
 						`meter_details`.`meter_multiplier`,
 						`meter_details`.`meter_type`,
+						`meter_details`.`usage_type`,
 						`meter_details`.`meter_brand`,
 						`meter_details`.`config_idx`,
 						`meter_configuration_file`.`config_file`,
@@ -394,6 +395,7 @@ class CAMRMeterController extends Controller
 			$meter->location_idx 					= $request->location_id;
 			$meter->rtu_idx			 				= $request->rtu_sn_number_id;
 			$meter->meter_status 					= $request->meter_status;
+			$meter->usage_type 						= $request->usage_type;
 			$meter->meter_remarks 					= $request->meter_remarks;	
 			$meter->created_by_user_idx 			= Session::get('loginID');
 			$meter->modified_by_user_idx 			= Session::get('loginID');
@@ -455,6 +457,7 @@ class CAMRMeterController extends Controller
 			$meter->location_idx 					= $request->location_id;
 			$meter->rtu_idx			 				= $request->rtu_sn_number_id;
 			$meter->meter_status 					= $request->meter_status;
+			$meter->usage_type 						= $request->usage_type;
 			$meter->meter_remarks 					= $request->meter_remarks;	
 			$meter->modified_by_user_idx 			= Session::get('loginID');
 					

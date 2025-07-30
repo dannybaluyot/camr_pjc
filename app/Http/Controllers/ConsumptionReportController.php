@@ -344,6 +344,7 @@ class ConsumptionReportController extends Controller
 						`meter_details`.`meter_default_name`,
 						`meter_details`.`meter_multiplier`,
 						`meter_details`.`meter_type`,
+						`meter_details`.`usage_type`,
 						`meter_details`.`meter_brand`,
 						`meter_configuration_file`.`config_file`,
 						`meter_location_table`.`location_code`,
@@ -356,7 +357,11 @@ class ConsumptionReportController extends Controller
 						where  `meter_details`.`meter_name` = ? and `meter_details`.`site_idx` = ?";	
 							   
 		$meter_info_data = DB::select("$raw_meter_info", [$meter_id,$site_id]);
+		$usage_type 		= $meter_info_data[0]->usage_type;
 
+
+			
+			
 	    ini_set('max_execution_time', 0);
        // ini_set('memory_limit', '500M');
        try {
@@ -401,6 +406,23 @@ class ConsumptionReportController extends Controller
 			
 			$no_excl = 12;
 			$n = 1;
+
+		if($usage_type=='Electric Meter'){
+			
+			$spreadSheet->getActiveSheet()
+					->setCellValue('A9', 'Total KWh')
+					->setCellValue('H11', 'KWh');	
+			
+			$file_title = 'KWh';
+			
+		}else{
+			
+			$spreadSheet->getActiveSheet()
+					->setCellValue('A9', 'Total cum')
+					->setCellValue('H11', 'cum');	
+			
+			$file_title = 'cum';
+		}
 		
 		if($interval_type=='hourly'){
 			
@@ -486,7 +508,7 @@ class ConsumptionReportController extends Controller
 		  
 			$_server_time	=	date('Y_m_d_H_i_s');
 			
-			$report_name = "$building_description"."_$building_code"."_$meter_id"."_KWh Consumption"."_$_server_time";
+			$report_name = "$building_description"."_$building_code"."_$meter_id"."_".$file_title."_Consumption"."_$_server_time";
 			$_report_name = str_replace(' ','%20',$report_name);
 		  
 		   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
