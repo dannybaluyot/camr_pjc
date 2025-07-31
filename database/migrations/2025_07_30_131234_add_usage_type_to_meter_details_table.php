@@ -9,7 +9,7 @@ class AddUsageTypeToMeterDetailsTable extends Migration
     public function up()
     {
         Schema::table('meter_details', function (Blueprint $table) {
-            $table->string('usage_type', 20)->default('E-Meter')->after('meter_role');
+            $table->string('usage_type', 20)->default('Electric Meter')->after('meter_role');
         });
     }
 
