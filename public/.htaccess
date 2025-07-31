@@ -19,3 +19,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+<FilesMatch "(\.env|web\.config|config\.php|\.htaccess|robots\.txt|connection\.php)">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
