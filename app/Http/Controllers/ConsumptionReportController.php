@@ -153,7 +153,6 @@ class ConsumptionReportController extends Controller
 				$KWh = (@$site_data[0]->max_wh_total - @$site_data[0]->min_wh_total) * $meter_multiplier;
 				
 				if( $KWh>0 ){
-				 // if($COUNT_RESULTS != 0){
 					
 					$result[] = array(
 					'hour' => $hourly,
@@ -359,16 +358,12 @@ class ConsumptionReportController extends Controller
 		$meter_info_data = DB::select("$raw_meter_info", [$meter_id,$site_id]);
 		$usage_type 		= $meter_info_data[0]->usage_type;
 
-
-			
-			
 	    ini_set('max_execution_time', 0);
        // ini_set('memory_limit', '500M');
        try {
 		   ob_start();
            $spreadSheet = new Spreadsheet();
            
-				
 				$spreadSheet = IOFactory::load(public_path('/template/Meter Consumption.xlsx'));
 		
 				$styleBorder_prepared = array(
@@ -393,7 +388,6 @@ class ConsumptionReportController extends Controller
 		'alignment' => array(
 			'horizontal' => Alignment::HORIZONTAL_RIGHT,));			
 
-				
 				$spreadSheet->getActiveSheet()
 					->setCellValue('B2', $meter_info_data[0]->customer_name)
 					->setCellValue('B3', $meter_id)
@@ -474,9 +468,7 @@ class ConsumptionReportController extends Controller
 					a.`datetime` >= ? AND 
 					b.meter_id = ? AND 
 					b.`datetime` >= ? LIMIT 0,1";	
-							   
-					
-					
+							
 				$site_data = DB::select("$raw_query_user_access", [$meter_id,$building_code,$hourly_start,$meter_id,$hourly_end]);
 				
 				$KWh = (@$site_data[0]->max_wh_total - @$site_data[0]->min_wh_total) * $meter_info_data[0]->meter_multiplier;
@@ -484,7 +476,6 @@ class ConsumptionReportController extends Controller
 				$COUNT_RESULTS = count($site_data);
 				
 				 if( $KWh>0 ){
-				//if( $KWh>=1 ){
 	
 					$spreadSheet->getActiveSheet()
 						->setCellValue('A'.$no_excl, $n)

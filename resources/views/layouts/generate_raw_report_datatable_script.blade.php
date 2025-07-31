@@ -132,11 +132,31 @@
 									LoadRawData.column(3).visible(false);
 									LoadRawData.column(4).visible(false);
 									LoadRawData.column(5).visible(true);
+									
+									LoadRawData.column(6).visible(false);
+									LoadRawData.column(7).visible(false);
+									LoadRawData.column(8).visible(false);
+									LoadRawData.column(9).visible(false);
+									LoadRawData.column(10).visible(false);
+									LoadRawData.column(11).visible(false);
+									LoadRawData.column(12).visible(false);
+									LoadRawData.column(13).visible(false);
+									LoadRawData.column(14).visible(false);
+									LoadRawData.column(15).visible(false);
+									LoadRawData.column(16).visible(false);
+									LoadRawData.column(17).visible(false);
+									LoadRawData.column(18).visible(false);
+									LoadRawData.column(19).visible(false);
+									LoadRawData.column(20).visible(false);
+									LoadRawData.column(21).visible(false);
+									LoadRawData.column(22).visible(false);
+									LoadRawData.column(23).visible(false);
+									
 									LoadRawData.column(24).visible(false);
 									LoadRawData.column(25).visible(false);
 									
 									$("#reading_title").html('cum');
-									//reading_title
+									
 							}
 							else{
 								

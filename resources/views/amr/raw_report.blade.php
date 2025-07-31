@@ -64,7 +64,11 @@
 										</div>
 									  </div>
 									</div>
-									
+									<style>
+									#column_selection{
+										display:inline-flex;
+									}
+									</style>
 									<div class="row mb-2">
 									<div id="column_selection">
 									  <label for="end_date" class="col-sm-3 col-form-label">Column</label>
