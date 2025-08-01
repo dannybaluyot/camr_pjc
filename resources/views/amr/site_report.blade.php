@@ -32,15 +32,25 @@
 						<div class="row mb-2">
 						  <label for="meter_role" class="col-sm-3 col-form-label">Meter Role</label>
 						  <div class="col-sm-9">
-										<select class="form-select form-control" id="meter_role" name="meter_role">
-											<option value="" title="Client/Tenant Meter">All</option>
-											<option value="Tenant Meter" title="Client/Tenant Meter">Tenant Meter</option>
-											<option value="Spare Meter">Spare Meter</option>
-											<option value="CUSA">CUSA</option>
-											<option value="Check Meter">Check Meter</option>
-										</select>
+								<select class="form-select form-control" id="meter_role" name="meter_role">
+									<option value="" title="Client/Tenant Meter">All</option>
+									<option value="Tenant Meter" title="Client/Tenant Meter">Tenant Meter</option>
+									<option value="Spare Meter">Spare Meter</option>
+									<option value="CUSA">CUSA</option>
+									<option value="Check Meter">Check Meter</option>
+								</select>
 						  </div>
-						</div>						
+						</div>
+
+						<div class="row mb-2">
+						  <label for="meter_role" class="col-sm-3 col-form-label">Usage Type</label>
+						  <div class="col-sm-9">
+								<select class="form-control form-select " name="usage_type" id="usage_type">
+									<option value="Electric Meter">Electric Meter</option>
+									<option value="Water Meter">Water Meter</option>
+								</select>
+						  </div>
+						</div>
 						
 						<div class="row mb-2">
 							<label for="start_date" class="col-sm-3 col-form-label">Start Date</label>
@@ -160,7 +170,7 @@
 													<th>Date End</th>
 													<th>End Reading</th>
 													<th class="all">Multiplier</th>
-													<th class="all">KWh</th>
+													<th class="all" id="reading_title">KWh</th>
 												</tr>
 											</thead>				
 											
@@ -169,7 +179,7 @@
 											</tbody>
 											<!----><tfoot>
 												<tr>
-													<th scope="col" colspan="10" style="text-align: right;">Total KWh:</th>
+													<th scope="col" colspan="10" style="text-align: right;" id="reading_title_total">Total KWh:</th>
 													<th scope="col" id="total_current_consumption" style="text-align: right;">0.00</th>
 												</tr>
 											</tfoot>	

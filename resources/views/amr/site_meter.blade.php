@@ -1,20 +1,4 @@
 
-<!--<br>
-<div class="row mb-1">
-		<div class="col-sm-8">
-		
-		</div>
-		<div class="col-sm-4">
-			<div class="form-floating mb-1">
-				<select class="form-select form-control" id="EERoomFilter_meter" name="EERoomFilter_meter">
-					<option value="">Show All</option>
-				</select>
-				<label for="EERoomFilter_meter" title="EE Room Filter">Location</label>
-			</div>
-		</div>
-		
-</div>
--->		
 
 									<div class="table-responsive">
 										<table class="table dataTable display nowrap cell-border" id="meterlist" width="100%" cellspacing="0">
@@ -39,8 +23,6 @@
 											<tbody>
 												
 											</tbody>
-											
-											
 											
 										</table>
 										

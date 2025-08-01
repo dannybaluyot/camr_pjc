@@ -32,7 +32,6 @@ class SiteReportController extends Controller
 			$data = User::where('user_id', '=', Session::get('loginID'))->first();			
 		
 			if($data->user_access=='ALL'){
-			// if($data->user_type=='Admin'){
 				
 						$site_data = SiteModel::leftjoin('meter_building_table', 'meter_building_table.site_idx', '=', 'meter_site.site_id')
 						->get([
@@ -79,6 +78,8 @@ class SiteReportController extends Controller
 		$end_date 	= $request->end_date;
 		$end_time 	= $request->end_time;
 		
+		$usage_type 	= $request->usage_type;
+		
 		$beginning_date	 = "$start_date $start_time";
 		$ending_date	 = "$end_date $end_time";
 		
@@ -104,6 +105,7 @@ class SiteReportController extends Controller
 		->selectRaw(" IFNULL((select `datetime` from `meter_data` USE INDEX (meter_data_index) where `location` = '$building_code' and `meter_id` = meter_name and `datetime` > '$beginning_date' and `datetime` < '$ending_date' order by `datetime` desc limit 0, 1 ), '0000-00-00 00:00:00')  as `ending_reading_datetime`")	
 		->where('meter_details.site_idx', $site_id)
 		->where("meter_details.meter_status", 'Active')
+		->where("meter_details.usage_type", $usage_type)
 		->join('meter_building_table', 'meter_building_table.site_idx', '=', 'meter_details.site_idx')
 		->join('meter_rtu', 'meter_rtu.rtu_id', '=', 'meter_details.rtu_idx')
 		->join('meter_location_table', 'meter_location_table.location_id', '=', 'meter_details.location_idx')
@@ -181,6 +183,8 @@ class SiteReportController extends Controller
 		$end_date 	= $request->end_date;
 		$end_time 	= $request->end_time;
 		
+		$usage_type 	= $request->usage_type;
+		
 		$beginning_date	 = "$start_date $start_time";
 		$ending_date	 = "$end_date $end_time";
 		
@@ -213,8 +217,25 @@ class SiteReportController extends Controller
 					->setCellValue('B3', $building_description)
 					->setCellValue('B4', $beginning_date)
 					->setCellValue('B5', $ending_date);
-				
-			 
+
+				if($usage_type=='Electric Meter'){
+					
+					$spreadSheet->getActiveSheet()
+							->setCellValue('A6', 'Total KWh')
+							->setCellValue('K10', 'KWh');	
+					
+					$file_title = 'KWh';
+					
+				}else{
+					
+					$spreadSheet->getActiveSheet()
+							->setCellValue('A6', 'Total cum')
+							->setCellValue('K10', 'cum');	
+					
+					$file_title = 'cum';
+					
+				}
+					 
 				$styleBorder_prepared = array(
 					'borders' => array(
 						'bottom' => array(
@@ -248,6 +269,7 @@ class SiteReportController extends Controller
 		->selectRaw(" IFNULL((select `datetime` from `meter_data` USE INDEX (meter_data_index) where `location` = '$building_code' and `meter_id` = meter_name and `datetime` <= '$ending_date' order by `datetime` desc limit 0, 1 ), '0000-00-00 00:00:00')  as `ending_reading_datetime`")	
 		->where('meter_details.site_idx', $site_id)
 		->where("meter_details.meter_status", 'Active')
+		->where('meter_details.usage_type', $usage_type)
 		->join('meter_building_table', 'meter_building_table.site_idx', '=', 'meter_details.site_idx')
 		->join('meter_rtu', 'meter_rtu.rtu_id', '=', 'meter_details.rtu_idx')
 		->join('meter_location_table', 'meter_location_table.location_id', '=', 'meter_details.location_idx')
@@ -295,7 +317,7 @@ class SiteReportController extends Controller
 			$_server_time	=	date('Y_m_d_H_i_s');
 			
 			// $report_name = "$building_description"."_$building_code". "_$_server_time";
-			$report_name = "$building_description"."_$building_code"."_Building Report"."_$_server_time";
+			$report_name = "$building_description"."_$building_code"."_"."$file_title"."_Building Report"."_$_server_time";
 			$_report_name = str_replace(' ','%20',$report_name);
 		  
 		   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

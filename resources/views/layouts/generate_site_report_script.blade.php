@@ -54,6 +54,24 @@
 			}
 	
 	}
+	
+	/*Change UOM*/
+	function MeterColumn() {
+		
+			let usage_type 			= $("#usage_type").val();
+			
+			if(usage_type=='Water Meter'){
+				//document.getElementById("column_selection").style.display = "none";
+				$("#reading_title").html('cum');
+				$("#reading_title_total").html('Total cum:');
+			}
+			else{
+				//document.getElementById("column_selection").style.display = "inline-flex";
+				$("#reading_title").html('KWh');
+				$("#reading_title_total").html('Total KWh:');
+			}
+	} 
+	
 	<!--Load Table-->
 	$("#generate_sap_report").click(function(event){
 		
@@ -77,6 +95,8 @@
 			let start_time 			= $("input[name=start_time]").val();
 			let end_time 			= $("input[name=end_time]").val();
 			
+			let usage_type 			= $("#usage_type").val();
+			
 			  $.ajax({
 				url: "/generate_site_report",
 				type:"POST",
@@ -88,7 +108,7 @@
 				  start_time:start_time,
 				  end_date:end_date,
 				  end_time:end_time,
-				  //valid_sap_meter:valid_sap_meter_chk,
+				  usage_type:usage_type,
 				  _token: "{{ csrf_token() }}"
 				},
 				success:function(response){
@@ -103,6 +123,8 @@
 					$('#start_dateError').text('');
 					$('#end_dateError').text('');	
 					$('#end_dateError').text('');	
+					
+					MeterColumn();
 					
 						var len = response.length;
 						var total_current_consumption = 0;
@@ -153,7 +175,6 @@
 							$('#date_end_txt').text('');
 							
 							/*No Result Found*/
-							// $("#sap_report_html_table tbody").append("<tr><td colspan='15' align='center'>No Result Found</td></tr>");
 							$("#download_options").html(''); 
 							$('#total_current_consumption_top').text('');
 							$('#total_current_consumption').text('');
@@ -226,13 +247,15 @@
 
 	function download_sap_report_excel(){
 		  
-			let site_id 				= $("#site_name option[value='" + $('#site_id').val() + "']").attr('data-id');
-			let meter_role 				= $("#meter_role").val();		
+			let site_id 			= $("#site_name option[value='" + $('#site_id').val() + "']").attr('data-id');
+			let meter_role 			= $("#meter_role").val();		
 			
 			let start_date 			= $("input[name=start_date]").val();
 			let end_date 			= $("input[name=end_date]").val();
 			let start_time 			= $("input[name=start_time]").val();
 			let end_time 			= $("input[name=end_time]").val();
+			
+			let usage_type 			= $("#usage_type").val();
 		 		  
 		var query = {
 			site_id:site_id,
@@ -241,6 +264,7 @@
 			start_time:start_time,
 			end_date:end_date,
 			end_time:end_time,
+			usage_type:usage_type,
 			_token: "{{ csrf_token() }}"
 		}
 
